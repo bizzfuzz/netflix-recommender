@@ -220,5 +220,5 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,python,jupyternotebooks
 
-netflix-data.symlink
+netflix-data
 feather-data/
