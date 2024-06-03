@@ -48,18 +48,26 @@ def load_combined_data(path):
         "rating":ratings
     }
 
-def feather_conversion():
+def feather_convert_all():
     """
-    converts large combined data files into
-    feather files and stores them in the feather folder
-    for faster repeated testing
+    converts all txt files in repo
     """
     index = 1
     while index <= LAST_FILE:
-        feather_path = get_feather_path(index)
+        feather_convert_txt(index)
+        index+= 1
 
-        if not os.path.exists(feather_path):
-            path = get_path(index)
-            data = load_combined_data(path)
-            df = pd.DataFrame(data)
-            df.to_feather(feather_path)
+def feather_convert_txt(index):
+    """
+    converts large combined data txt files into
+    feather files and stores them in the feather folder
+    for faster repeated testing.
+    Skips if file already converted.
+    """
+    feather_path = get_feather_path(index)
+
+    if not os.path.exists(feather_path):
+        path = get_path(index)
+        data = load_combined_data(path)
+        df = pd.DataFrame(data)
+        df.to_feather(feather_path)
