@@ -48,6 +48,37 @@ def load_combined_data(path):
         "rating":ratings
     }
 
+def load_feather_file(index):
+    """
+    load specific feathe file
+    """
+    return pd.read_feather(get_feather_path(index))
+
+def dataframe_to_feather(df, filename):
+    """
+    serializes dataframe to feather format
+    """
+    df.to_feather(filename)
+
+def combined_ratings_path():
+    """
+    returns path to feather file with dataframe
+    of all ratings
+    """
+    return "feather-data/combined-ratings.feather"
+
+def load_combined_ratings():
+    """
+    loads serialized combined ratings
+    """
+    return pd.read_feather(combined_ratings_path())
+
+def ratings_serialized():
+    """
+    check if combined ratings already serialized
+    """
+    return os.path.exists(combined_ratings_path())
+
 def feather_convert_all():
     """
     converts all txt files in repo
@@ -71,3 +102,30 @@ def feather_convert_txt(index):
         data = load_combined_data(path)
         df = pd.DataFrame(data)
         df.to_feather(feather_path)
+
+def initialize_all_data():
+    """
+    if data not combined and serialize,
+    prepares the data for analysis
+    """
+    if not ratings_serialized():
+        feather_convert_all()
+        serialize_ratings(load_all_ratings())
+
+def load_all_ratings():
+    """
+    loads all 4 combined_data files and combines them
+    into one dataframe
+    """
+    df = load_feather_file(1)
+    index = 2
+    while index <= LAST_FILE:
+        df = pd.concat([df, load_feather_file(index)], axis=0)
+        index += 1
+    return df
+
+def serialize_ratings(df):
+    """saves rating dataframe as a feather file"""
+    path = combined_ratings_path()
+    if not os.path.exists(path):
+        dataframe_to_feather(df, path)
