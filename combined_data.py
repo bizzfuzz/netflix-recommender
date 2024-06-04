@@ -9,7 +9,7 @@ import os
 import pandas as pd
 
 #can be tuned from 1-4. with all 4 files having 100M+ records
-LAST_FILE = 2
+LAST_FILE = 1
 
 def get_path(number):
     """
