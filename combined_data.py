@@ -8,7 +8,8 @@ feather format if not already serialized.
 import os
 import pandas as pd
 
-LAST_FILE = 4
+#can be tuned from 1-4. with all 4 files having 100M+ records
+LAST_FILE = 2
 
 def get_path(number):
     """
