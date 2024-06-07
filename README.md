@@ -35,12 +35,12 @@ The use of KNN clustering and Decision Tree Forest classification is a powerful 
 SeamCast would do well to fund further development of the proposed solution to ensure domination of the streaming sector. 
 
 ## Previewing
-Use the last 2 cells in the notebook. The first cell will select a user and recommend movies popular in their cluster:
+Use the last 2 cells in the notebook. The first cell will select a user and recommend movies popular in their cluster:<br>
 `
 User: 704642
 Recommendations: ['The Game', 'Richard III', 'Silk Stockings']
-`
-The last cell will use the classifier to confirm that the given uesr will enjoy said recommendations:
+`<br>
+The last cell will use the classifier to confirm that the given uesr will enjoy said recommendations:<br>
 `
 models predict user:704642 will like 'The Game'
 models predict user:704642 will like 'Richard III'
