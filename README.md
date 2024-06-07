@@ -1,7 +1,7 @@
 # SeamCast Movie Recommender
 ![logo](images/seamcast%20light%20small.png)
 
-Author:Ian Musau
+Author: Ian Musau
 
 ## Libraries
 - Pandas
